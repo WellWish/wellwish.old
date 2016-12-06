@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'haml'
+gem 'capybara'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
