@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - db/schema.rb
     - config/initializers/devise.rb
+    - db/migrate/20161207105843_add_devise_to_users.rb
   TargetRubyVersion: 2.3
 
 Style/AccessorMethodName:
