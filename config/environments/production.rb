@@ -92,8 +92,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Required by devise
-  config.action_mailer.delivery_method       = :smtp
-  config.action_mailer.smtp_settings         = {
+  config.action_mailer.delivery_method     = :smtp
+  config.action_mailer.default_url_options = { host: "www.wellwish.org" }
+  config.action_mailer.smtp_settings       = {
     user_name:            ENV["GMAIL_USERNAME"],
     password:             ENV["GMAIL_PASSWORD"],
     domain:               "www.wellwish.org",
