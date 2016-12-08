@@ -93,14 +93,13 @@ Rails.application.configure do
 
   # Required by devise
   config.action_mailer.delivery_method       = :smtp
-  config.action_mailer.default_url_options   = { host: "www.wellwish.org" }
   config.action_mailer.smtp_settings         = {
     user_name:            ENV["GMAIL_USERNAME"],
     password:             ENV["GMAIL_PASSWORD"],
     domain:               "www.wellwish.org",
     address:              "smtp.gmail.com",
     port:                 "587",
-    authentication:       :plain,
+    authentication:       "plain",
     enable_starttls_auto: true,
   }
 end
