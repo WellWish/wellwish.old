@@ -105,7 +105,8 @@ RSpec.describe WishesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
+        { title: "New title", description: "New description",
+          criteria: "New criteria" }
       end
 
       it "updates the requested wish" do
@@ -113,7 +114,9 @@ RSpec.describe WishesController, type: :controller do
         put :update, params: { id: wish.to_param, wish: new_attributes },
                      session: valid_session
         wish.reload
-        skip("Add assertions for updated state")
+        expect(wish.title).to eq "New title"
+        expect(wish.description).to eq "New description"
+        expect(wish.criteria).to eq "New criteria"
       end
 
       it "assigns the requested wish as @wish" do
