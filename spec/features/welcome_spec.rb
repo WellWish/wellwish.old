@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Welcome page", type: :feature do
-  scenario "User visits the welcome page" do
-    visit "/"
+feature "Welcome page" do
+  scenario "user visits the welcome page" do
+    visit root_path
 
     expect(page).to have_text "WellWish"
   end
