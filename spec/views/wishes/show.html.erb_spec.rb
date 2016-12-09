@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "wishes/show", type: :view do
   before(:each) do
     @wish = assign(:wish, Wish.create!(
-      :title => "Title",
-      :description => "MyText",
-      :criteria => "MyText"
+                            title: "Title",
+                            description: "MyText",
+                            criteria: "MyText",
     ))
   end
 

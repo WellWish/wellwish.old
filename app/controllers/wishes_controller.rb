@@ -28,7 +28,9 @@ class WishesController < ApplicationController
 
     respond_to do |format|
       if @wish.save
-        format.html { redirect_to @wish, notice: 'Wish was successfully created.' }
+        format.html do
+          redirect_to @wish, notice: "Wish was successfully created."
+        end
         format.json { render :show, status: :created, location: @wish }
       else
         format.html { render :new }
@@ -42,7 +44,9 @@ class WishesController < ApplicationController
   def update
     respond_to do |format|
       if @wish.update(wish_params)
-        format.html { redirect_to @wish, notice: 'Wish was successfully updated.' }
+        format.html do
+          redirect_to @wish, notice: "Wish was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @wish }
       else
         format.html { render :edit }
@@ -56,19 +60,23 @@ class WishesController < ApplicationController
   def destroy
     @wish.destroy
     respond_to do |format|
-      format.html { redirect_to wishes_url, notice: 'Wish was successfully destroyed.' }
+      format.html do
+        redirect_to wishes_url, notice: "Wish was successfully destroyed."
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wish
-      @wish = Wish.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def wish_params
-      params.require(:wish).permit(:title, :description, :criteria)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_wish
+    @wish = Wish.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
+  def wish_params
+    params.require(:wish).permit(:title, :description, :criteria)
+  end
 end
