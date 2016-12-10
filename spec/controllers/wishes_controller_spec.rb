@@ -30,38 +30,38 @@ RSpec.describe WishesController, type: :controller do
     { title: "", description: "", criteria: "" }
   end
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # WishesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:user) { create :user }
 
   describe "GET #index" do
+    let(:wish) { create :wish }
+
     it "assigns all wishes as @wishes" do
-      wish = Wish.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(assigns(:wishes)).to eq([wish])
     end
   end
 
   describe "GET #show" do
+    let(:wish) { create :wish }
+
     it "assigns the requested wish as @wish" do
-      wish = Wish.create! valid_attributes
-      get :show, params: { id: wish.to_param }, session: valid_session
+      get :show, params: { id: wish.to_param }
       expect(assigns(:wish)).to eq(wish)
     end
   end
 
   describe "GET #new" do
     it "assigns a new wish as @wish" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(assigns(:wish)).to be_a_new(Wish)
     end
   end
 
   describe "GET #edit" do
+    let(:wish) { create :wish }
+
     it "assigns the requested wish as @wish" do
-      wish = Wish.create! valid_attributes
-      get :edit, params: { id: wish.to_param }, session: valid_session
+      get :edit, params: { id: wish.to_param }
       expect(assigns(:wish)).to eq(wish)
     end
   end
@@ -69,34 +69,41 @@ RSpec.describe WishesController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Wish" do
+        sign_in user
+
         expect do
-          post :create, params: { wish: valid_attributes },
-                        session: valid_session
+          post :create, params: { wish: valid_attributes }
         end.to change(Wish, :count).by(1)
       end
 
       it "assigns a newly created wish as @wish" do
-        post :create, params: { wish: valid_attributes }, session: valid_session
+        sign_in user
+
+        post :create, params: { wish: valid_attributes }
         expect(assigns(:wish)).to be_a(Wish)
         expect(assigns(:wish)).to be_persisted
       end
 
       it "redirects to the created wish" do
-        post :create, params: { wish: valid_attributes }, session: valid_session
+        sign_in user
+
+        post :create, params: { wish: valid_attributes }
         expect(response).to redirect_to(Wish.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved wish as @wish" do
-        post :create, params: { wish: invalid_attributes },
-                      session: valid_session
+        sign_in user
+
+        post :create, params: { wish: invalid_attributes }
         expect(assigns(:wish)).to be_a_new(Wish)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: { wish: invalid_attributes },
-                      session: valid_session
+        sign_in user
+
+        post :create, params: { wish: invalid_attributes }
         expect(response).to render_template("new")
       end
     end
@@ -104,15 +111,14 @@ RSpec.describe WishesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
+      let(:wish) { create :wish }
       let(:new_attributes) do
         { title: "New title", description: "New description",
           criteria: "New criteria" }
       end
 
       it "updates the requested wish" do
-        wish = Wish.create! valid_attributes
-        put :update, params: { id: wish.to_param, wish: new_attributes },
-                     session: valid_session
+        put :update, params: { id: wish.to_param, wish: new_attributes }
         wish.reload
         expect(wish.title).to eq "New title"
         expect(wish.description).to eq "New description"
@@ -120,32 +126,26 @@ RSpec.describe WishesController, type: :controller do
       end
 
       it "assigns the requested wish as @wish" do
-        wish = Wish.create! valid_attributes
-        put :update, params: { id: wish.to_param, wish: valid_attributes },
-                     session: valid_session
+        put :update, params: { id: wish.to_param, wish: valid_attributes }
         expect(assigns(:wish)).to eq(wish)
       end
 
       it "redirects to the wish" do
-        wish = Wish.create! valid_attributes
-        put :update, params: { id: wish.to_param, wish: valid_attributes },
-                     session: valid_session
+        put :update, params: { id: wish.to_param, wish: valid_attributes }
         expect(response).to redirect_to(wish)
       end
     end
 
     context "with invalid params" do
+      let(:wish) { create :wish }
+
       it "assigns the wish as @wish" do
-        wish = Wish.create! valid_attributes
-        put :update, params: { id: wish.to_param, wish: invalid_attributes },
-                     session: valid_session
+        put :update, params: { id: wish.to_param, wish: invalid_attributes }
         expect(assigns(:wish)).to eq(wish)
       end
 
       it "re-renders the 'edit' template" do
-        wish = Wish.create! valid_attributes
-        put :update, params: { id: wish.to_param, wish: invalid_attributes },
-                     session: valid_session
+        put :update, params: { id: wish.to_param, wish: invalid_attributes }
         expect(response).to render_template("edit")
       end
     end
@@ -153,15 +153,17 @@ RSpec.describe WishesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested wish" do
-      wish = Wish.create! valid_attributes
+      wish = create(:wish)
+
       expect do
-        delete :destroy, params: { id: wish.to_param }, session: valid_session
+        delete :destroy, params: { id: wish.to_param }
       end.to change(Wish, :count).by(-1)
     end
 
     it "redirects to the wishes list" do
-      wish = Wish.create! valid_attributes
-      delete :destroy, params: { id: wish.to_param }, session: valid_session
+      wish = create(:wish)
+
+      delete :destroy, params: { id: wish.to_param }
       expect(response).to redirect_to(wishes_url)
     end
   end

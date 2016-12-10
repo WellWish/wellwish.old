@@ -14,7 +14,9 @@ require "rspec/rails"
 require "capybara/rails"
 require "support/factory_girl"
 require "support/devise"
+require "support/shoulda"
 require "support/feature_helpers"
+require "pry"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -66,12 +68,4 @@ RSpec.configure do |config|
 
   # Include feature helpers
   config.include FeatureHelpers
-end
-
-# Shoulda matchers
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end

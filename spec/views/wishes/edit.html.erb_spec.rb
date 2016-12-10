@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "wishes/edit", type: :view do
+  let(:wish) { create :wish }
+
   before(:each) do
-    @wish = assign(:wish, Wish.create!(
-                            title: "MyString",
-                            description: "MyText",
-                            criteria: "MyText",
-    ))
+    @wish = wish
   end
 
   it "renders the edit wish form" do

@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :wish do
-    title "MyString"
-    description "MyText"
-    criteria "MyText"
+    user
+    title "MyTitle"
+    description "MyDescription"
+    criteria "MyCriteria"
   end
 end
