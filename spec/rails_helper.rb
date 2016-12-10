@@ -67,3 +67,11 @@ RSpec.configure do |config|
   # Include feature helpers
   config.include FeatureHelpers
 end
+
+# Shoulda matchers
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
