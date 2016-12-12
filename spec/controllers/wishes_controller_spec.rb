@@ -67,26 +67,22 @@ RSpec.describe WishesController, type: :controller do
   end
 
   describe "POST #create" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       it "creates a new Wish" do
-        sign_in user
-
         expect do
           post :create, params: { wish: valid_attributes }
         end.to change(Wish, :count).by(1)
       end
 
       it "assigns a newly created wish as @wish" do
-        sign_in user
-
         post :create, params: { wish: valid_attributes }
         expect(assigns(:wish)).to be_a(Wish)
         expect(assigns(:wish)).to be_persisted
       end
 
       it "redirects to the created wish" do
-        sign_in user
-
         post :create, params: { wish: valid_attributes }
         expect(response).to redirect_to(Wish.last)
       end
@@ -94,15 +90,11 @@ RSpec.describe WishesController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved wish as @wish" do
-        sign_in user
-
         post :create, params: { wish: invalid_attributes }
         expect(assigns(:wish)).to be_a_new(Wish)
       end
 
       it "re-renders the 'new' template" do
-        sign_in user
-
         post :create, params: { wish: invalid_attributes }
         expect(response).to render_template("new")
       end
