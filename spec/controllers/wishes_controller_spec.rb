@@ -52,6 +52,7 @@ RSpec.describe WishesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new wish as @wish" do
+      sign_in user
       get :new, params: {}
       expect(assigns(:wish)).to be_a_new(Wish)
     end
@@ -61,6 +62,7 @@ RSpec.describe WishesController, type: :controller do
     let(:wish) { create :wish }
 
     it "assigns the requested wish as @wish" do
+      sign_in user
       get :edit, params: { id: wish.to_param }
       expect(assigns(:wish)).to eq(wish)
     end
@@ -102,6 +104,8 @@ RSpec.describe WishesController, type: :controller do
   end
 
   describe "PUT #update" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       let(:wish) { create :wish }
       let(:new_attributes) do
@@ -144,6 +148,8 @@ RSpec.describe WishesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    before(:each) { sign_in user }
+
     it "destroys the requested wish" do
       wish = create(:wish)
 
