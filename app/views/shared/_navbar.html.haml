@@ -2,7 +2,7 @@
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+      %button.navbar-toggle.collapsed{"aria-expanded": "false", "data-target": "#bs-example-navbar-collapse-1", "data-toggle": "collapse", type: "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
@@ -11,15 +11,18 @@
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
-      %ul.nav.navbar-nav.navbar-right
+      .nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li
-            = link_to "Sign out", destroy_user_session_path, method: :delete
+          = link_to destroy_user_session_path, method: :delete do
+            %button{type: "button", class: "btn btn-default navbar-btn"}
+              Sign out
         - else
-          %li
-            = link_to "Sign in", new_user_session_path
-          %li
-            = link_to "Sign up", new_user_registration_path
+          = link_to new_user_session_path do
+            %button{type: "button", class: "btn btn-default navbar-btn"}
+              Sign in
+          = link_to new_user_registration_path do
+            %button{type: "button", class: "btn btn-primary navbar-btn"}
+              Sign up
       %form.navbar-form.navbar-right
         .form-group
           %input.form-control{placeholder: "Search WellWish", type: "text"}/
