@@ -5,6 +5,7 @@ gem "capybara"
 gem "rubocop", require: false
 gem "bootstrap-sass", "~> 3.3.6"
 gem "devise"
+gem "rails-controller-testing"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.0.0", ">= 5.0.0.1"
@@ -61,6 +62,7 @@ end
 group :test do
   gem "simplecov"
   gem "codeclimate-test-reporter", "~> 1.0.0"
+  gem "shoulda-matchers", "~> 3.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

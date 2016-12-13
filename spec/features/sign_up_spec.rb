@@ -12,9 +12,9 @@ feature "Signing up" do
 
   context "when email is taken" do
     scenario "user is notified that the email address is taken" do
-      create :user, :confirmed, email:                 "joebloggs@email.com",
-                                password:              "password",
-                                password_confirmation: "password"
+      create :user, email:                 "joebloggs@email.com",
+                    password:              "password",
+                    password_confirmation: "password"
 
       sign_up_with email: "joebloggs@email.com", password: "password"
       expect(page).to have_text "Email has already been taken"

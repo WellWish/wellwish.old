@@ -2,9 +2,9 @@ require "rails_helper"
 
 feature "Signing out" do
   scenario "user signs out" do
-    create :user, :confirmed, email:                 "joebloggs@email.com",
-                              password:              "password",
-                              password_confirmation: "password"
+    create :user, email:                 "joebloggs@email.com",
+                  password:              "password",
+                  password_confirmation: "password"
 
     sign_in_with email: "joebloggs@email.com", password: "password"
     click_on "Sign out"
