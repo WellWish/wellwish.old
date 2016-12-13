@@ -7,36 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        / Brand and toggle get grouped for better mobile display
-        .navbar-header
-          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: "#"} WellWish
-        / Collect the nav links, forms, and other content for toggling
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-          %ul.nav.navbar-nav.navbar-right
-            - if user_signed_in?
-              %li
-                = link_to "Sign out", destroy_user_session_path, method: :delete
-            - else
-              %li
-                = link_to "Sign in", new_user_session_path
-              %li
-                = link_to "Sign up", new_user_registration_path
-          %form.navbar-form.navbar-right
-            .form-group
-              %input.form-control{placeholder: "Search WellWish", type: "text"}/
-        / /.navbar-collapse
-      / /.container-fluid
+    = render "shared/navbar"
+    = render "shared/flash"
     .container
-      - if notice
-        %p.notice= notice
-      - if alert
-        %p.alert= alert
       = yield
