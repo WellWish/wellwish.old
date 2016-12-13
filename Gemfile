@@ -57,6 +57,8 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "pry-rails"
   gem "letter_opener"
+  gem "guard"
+  gem "guard-livereload", "~> 2.5", require: false
 end
 
 group :test do
