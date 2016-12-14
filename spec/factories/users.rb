@@ -4,7 +4,7 @@ FactoryGirl.define do
     email { "#{username.downcase}@email.com" }
 
     password "password"
-    password_confirmation "password"
+    password_confirmation { password }
     confirmed_at Date.current
 
     factory :unconfirmed_user do
