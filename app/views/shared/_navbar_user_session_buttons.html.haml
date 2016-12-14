@@ -1,0 +1,11 @@
+- if user_signed_in?
+  = link_to destroy_user_session_path, method: :delete do
+    %button{type: "button", class: "btn btn-default navbar-btn"}
+      Sign out
+- else
+  = link_to new_user_session_path do
+    %button{type: "button", class: "btn btn-default navbar-btn"}
+      Sign in
+  = link_to new_user_registration_path do
+    %button{type: "button", class: "btn btn-primary navbar-btn"}
+      Sign up

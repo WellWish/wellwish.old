@@ -7,7 +7,7 @@ feature "Signing out" do
 
     sign_in_with email: "joebloggs@email.com", password: "password"
 
-    click_button "Sign out"
+    click_link "Sign out"
     expect(page).to have_text "Signed out successfully."
   end
 end

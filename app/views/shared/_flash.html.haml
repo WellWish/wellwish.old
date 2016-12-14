@@ -1,4 +1,5 @@
-- if notice
-  %p.notice= notice
-- if alert
-  %p.alert= alert
+.container#flash
+  - if notice
+    %p#notice= notice
+  - if alert
+    %p#alert= alert

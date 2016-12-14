@@ -1,5 +1,5 @@
 %nav.navbar.navbar-default
-  .container-fluid
+  .container-fluid#navbar
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded": "false", "data-target": "#bs-example-navbar-collapse-1", "data-toggle": "collapse", type: "button"}
@@ -12,17 +12,7 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
       .nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          = link_to destroy_user_session_path, method: :delete do
-            %button{type: "button", class: "btn btn-default navbar-btn"}
-              Sign out
-        - else
-          = link_to new_user_session_path do
-            %button{type: "button", class: "btn btn-default navbar-btn"}
-              Sign in
-          = link_to new_user_registration_path do
-            %button{type: "button", class: "btn btn-primary navbar-btn"}
-              Sign up
+        = render "shared/navbar_user_session_buttons"
       %form.navbar-form.navbar-right
         .form-group
           %input.form-control{placeholder: "Search WellWish", type: "text"}/
