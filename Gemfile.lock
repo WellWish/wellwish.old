@@ -89,6 +89,7 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.14)
     formatador (0.2.5)
+    geocoder (1.4.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -280,6 +281,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_girl_rails (~> 4.0)
+  geocoder
   guard
   guard-livereload (~> 2.5)
   haml
