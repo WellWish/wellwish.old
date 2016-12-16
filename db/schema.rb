@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210042555) do
+ActiveRecord::Schema.define(version: 20161214071150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "wish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.index ["wish_id"], name: "index_locations_on_wish_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -47,5 +56,6 @@ ActiveRecord::Schema.define(version: 20161210042555) do
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
 
+  add_foreign_key "locations", "wishes"
   add_foreign_key "wishes", "users"
 end

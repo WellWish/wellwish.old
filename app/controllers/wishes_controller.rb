@@ -16,6 +16,7 @@ class WishesController < ApplicationController
   # GET /wishes/new
   def new
     @wish = Wish.new
+    @wish.build_location
   end
 
   # GET /wishes/1/edit

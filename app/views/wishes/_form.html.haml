@@ -1,0 +1,32 @@
+= form_for(wish) do |f|
+  - if wish.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(wish.errors.count, "error")
+        prohibited this wish from being saved:
+      %ul
+        - wish.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :criteria
+    = f.text_area :criteria
+  = f.fields_for :location do |location_form|
+    .field
+      %button#your-location-btn.btn.btn-default.btn{type: "button"}
+        %span.glyphicon.glyphicon-map-marker{"aria-hidden": "true"}
+        Your current location
+    .field
+    = location_form.label :longitude
+    = location_form.number_field :longitude
+    .field
+    = location_form.label :latitude
+    = location_form.number_field :latitude
+  .actions
+    = f.submit
+
